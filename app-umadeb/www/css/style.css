@@ -1,0 +1,29 @@
+/* Empty. Add your own CSS if you like */
+
+.tab {
+    padding-bottom: 15px;
+    padding-top: 15px;
+    text-align: center;
+}
+
+#actions {
+    padding: 0
+}
+
+.linhaLanc {
+    padding: 6px
+}
+
+.linhaLanc.item-icon-left {
+    padding-left: 54px;
+}
+
+.linhaLanc .item-note {
+    position: absolute;
+    right: 11px;
+    bottom: 10px;
+}
+
+#sumTotal {
+    font-size: 12px;
+}

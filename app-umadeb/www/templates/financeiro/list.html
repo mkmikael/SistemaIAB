@@ -1,0 +1,66 @@
+<ion-view cache-view="false" view-title="Movimento Financeiro">
+    <ion-nav-bar class="bar-stable">
+        <ion-nav-back-button>
+            Voltar
+        </ion-nav-back-button>
+
+        <ion-nav-buttons side="right">
+            <button class="button button-icon button-clear ion-refresh" ng-click="loadLancs()">
+            </button>
+        </ion-nav-buttons>
+
+        <ion-nav-buttons side="left">
+            <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+            </button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-content ng-init="loadLancs()">
+        <div class="tab row">
+            <div class="col col-10" ng-click="changeDate(-1)">
+                <a><i class="icon ion-chevron-left"></i></a>
+            </div>
+            <div class="col col-80">
+                {{ data | date: 'MMMM' }} de {{ data | date: 'yyyy' }}
+            </div>
+            <div class="col col-10" ng-click="changeDate(1)">
+                <a><i class="icon ion-chevron-right"></i></a>
+            </div>
+        </div>
+
+        <div class="list">
+            <div id="actions" class="item">
+                <div  class="row">
+                    <div class="col">
+                        <a href="#/app/financeiro/form/RECEBER"
+                        class="button button-small button-block button-balanced">RECEITA</a>
+                    </div>
+                    <div class="col">
+                        <a href="#/app/financeiro/form/PAGAR"
+                        class="button button-small button-block button-assertive">DESPESA</a>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-repeat="l in lancs" ui-sref="app.financeiroShow({ id: l.id, type: l.tipo.name})" class="item item-icon-left linhaLanc">
+                <i class="icon ion-record {{ l.tipo.name == 'RECEBER' ? 'balanced' : 'assertive' }}"></i>
+                {{ l.descricao }}
+                <p>{{ l.dataPrevista | date: 'dd/MM/yyyy' }}</p>
+                <span ng-if="l.tipo.name == 'RECEBER'" class="item-note balanced">
+                    R$ {{ l.valor | number: 2 }}
+                </span>
+                <span ng-if="l.tipo.name == 'PAGAR'" class="item-note assertive">
+                    R$ {{ -l.valor | number: 2 }}
+                </span>
+            </div>
+        </div> <!-- list -->
+    </ion-content>
+    <div class="bar bar-footer bar-stable">
+        <div class="title" id="sumTotal">
+            Total até {{ data | date: 'MMMM' }}:
+            <span ng-if="soma > 0" class="balanced"> {{soma | currency: 'R$ '}}</span>
+            <span ng-if="soma < 0" class="assertive"> {{soma | currency: 'R$ '}}</span> /
+            Total: <span ng-if="total > 0" class="balanced"> {{total | currency: 'R$ '}}</span>
+            <span ng-if="total < 0" class="assertive"> {{total | currency: 'R$ '}}</span>
+        </div>
+    </div>
+</ion-view>

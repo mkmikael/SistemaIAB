@@ -1,0 +1,108 @@
+<ion-view cache-view="false" view-title="Movimento Espiritual">
+    <ion-content ng-init="loadMov()">
+        <div class="tab row">
+            <div class="col col-10" ng-click="changeDate(-1)">
+                <a><i class="icon ion-chevron-left"></i></a>
+            </div>
+            <div class="col col-80">
+                {{ data | date: 'MMMM' }} de {{ data | date: 'yyyy' }}
+            </div>
+            <div class="col col-10" ng-click="changeDate(1)">
+                <a><i class="icon ion-chevron-right"></i></a>
+            </div>
+        </div>
+        <form name="form">
+            <div class="list">
+                <div class="item item-divider">
+                    Ações
+                </div>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Jovens Matriculados</span>
+                    <input type="number" ng-model="mov.jovensMatriculados" required>
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Jovens Membros</span>
+                    <input type="number" ng-model="mov.jovensMembros" required>
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Culto Oficial</span>
+                    <input type="number" ng-model="mov.cultoOficial" required>
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Cultos ao ar livre</span>
+                    <input type="number" ng-model="mov.cultoLivres" required>
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Cultos Domiciliares</span>
+                    <input type="number" ng-model="mov.cultoDomiciliar" required>
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Cultos de Treinamento</span>
+                    <input type="number" ng-model="mov.cultoTreinamento" required>
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Palestras Bíblicas</span>
+                    <input type="number" ng-model="mov.palestras" required>
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Reuniões de Oração e Ensaio</span>
+                    <input type="number" ng-model="mov.reunioesOracaoEnsaio" required>
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Campanhas de Oração</span>
+                    <input type="number" ng-model="mov.campanhaOracao" required>
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Consagrações</span>
+                    <input type="number" ng-model="mov.consagracoes" required>
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Vigílias</span>
+                    <input type="number" ng-model="mov.vigilias" required>
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Cruzadas</span>
+                    <input type="number" ng-model="mov.cruzadas" required>
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Evangelismos</span>
+                    <input type="number" ng-model="mov.evangelismos" required>
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Pessoas Evangelizadas</span>
+                    <input type="number" ng-model="mov.pessoasEvangelizadas" required>
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Literaturas Distribuídas</span>
+                    <input type="number" ng-model="mov.literaturas" required>
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Casas Visitadas</span>
+                    <input type="number" ng-model="mov.casasVisitas" required>
+                </label>
+                <div class="item item-divider">
+                    Resultados Visíveis
+                </div>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Decisões</span>
+                    <input type="number" ng-model="mov.decisoes" required>
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Reconciliações</span>
+                    <input type="number" ng-model="mov.reconciliacoes" required>
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Batismos com Espírito Santo</span>
+                    <input type="number" ng-model="mov.batismoEspiritoSanto" required>
+                </label>
+                <label class="item item-input item-stacked-label">
+                    <span class="input-label">Curas Divínas</span>
+                    <input type="number" ng-model="mov.curasDivinas" required>
+                </label>
+                <div class="item">
+                    <button ng-disabled="form.$invalid" class="button button-block button-positive" ng-click="save(mov)">Enviar</button>
+                </div>
+            </div> <!-- list -->
+        </form>
+    </ion-content>
+</ion-view>
