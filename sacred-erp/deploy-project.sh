@@ -13,8 +13,8 @@ TOMCAT_UNDEPLOY_URL="http://localhost:8080/manager/text/undeploy?path="
 TOMCAT_LIST_URL="http://localhost:8080/manager/text/list"
 TOMCAT_SESSIONS_URL="http://localhost:8080/manager/text/sessions"
 
-APP_PATH="sistemaumadeb"
-WAR_FILE="sistemaumadeb.war"
+APP_PATH="sistemaiab"
+WAR_FILE="sistemaiab.war"
 GRAILS_ENV="production"
 GRAILS_CLEAN=false
 RESTART_TOMCAT=false
@@ -39,7 +39,7 @@ function undeploy {
 }
 
 function make_war {
-  export JAVA_HOME="/usr/lib/jvm/java-7-openjdk-amd64"
+  export JAVA_HOME="/usr/lib/jvm/java-1.8.0-openjdk-amd64"
 
   if [ "$GRAILS_CLEAN" = true ] ; then
     echo "Grails clean..."
@@ -50,7 +50,7 @@ function make_war {
 }
 
 function restart_tomcat {
-    service tomcat7 restart
+    service tomcat8 restart
 }
 
 
