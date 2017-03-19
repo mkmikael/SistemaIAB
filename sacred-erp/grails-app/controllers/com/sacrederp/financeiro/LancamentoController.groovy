@@ -77,19 +77,14 @@ where
         def cal = Calendar.instance
         if (!params.mes) {
             params.mes = cal.get(Calendar.MONTH) + 1
-        }
-        def mesAnterior
-        if (params.mes == 1) {
-            mesAnterior = 12
-        } else {
-            mesAnterior = params.mes - 1
+            params.ano = cal.get(Calendar.YEAR)
         }
         def saldoAnterior = Lancamento.createCriteria().get {
             projections {
                 sum('valor')
             }
             'in'('tipo', TipoLancamento.RECEBER, TipoLancamento.PAGAR)
-            sqlRestriction "extract(month from data_prevista) = ?", [mesAnterior]
+            sqlRestriction "extract(month from data_prevista) < ? and extract(year from data_prevista) <= ?", [params.mes, params.ano]
         } ?: 0
 
         def receitasCriteria = {

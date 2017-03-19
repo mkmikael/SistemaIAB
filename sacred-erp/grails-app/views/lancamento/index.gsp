@@ -18,12 +18,19 @@
     </div>
     <div class="content">
         <hr>
-        <g:form>
+        <g:form class="form-inline">
             <div class="form-group">
                 <label for="mes" class="control-label">Mês de Referência</label>
                 <g:select class="form-control" name="mes"
                           from="${meses}" optionKey="index" optionValue="name" value="${mes}" />
             </div>
+            <div class="form-group">
+                <label for="mes" class="control-label">Ano de Referência</label>
+                <g:select class="form-control" name="ano"
+                          from="${2000..2030}" value="${ano}" />
+            </div>
+            <br>
+            <br>
             <button type="submit" class="btn btn-primary">Procurar</button>
         </g:form>
         <hr>
@@ -68,7 +75,7 @@
                         <td><g:formatNumber type="currency" number="${receitaSum + despesaSum}"/></td>
                     </tr>
                     <tr>
-                        <th>Saldo Mês Anterior</th>
+                        <th>Saldo Anterior</th>
                         <td><g:formatNumber type="currency" number="${saldoAnterior}"/></td>
                     </tr>
                     <tr>

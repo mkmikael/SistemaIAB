@@ -29,6 +29,8 @@ class MovimentoEspiritualController {
         if (!movimentoEspiritual)
             movimentoEspiritual = new MovimentoEspiritual()
         params.secretario = null
+        params.dateCreated = null
+        params.lastUpdated = null
         movimentoEspiritual.properties = params
         movimentoEspiritual.secretario = congregado
         movimentoEspiritual.save(failOnError: true)
