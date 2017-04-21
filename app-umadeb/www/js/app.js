@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers'])
 
-.constant("URL_SERVER", "http://192.168.100.3:8080")
+.constant("URL_SERVER", "http://181.215.107.234/sistemaiab")
 
 .factory('authInterceptor', function ($rootScope, $window, $q) {
     return {

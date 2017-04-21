@@ -16,6 +16,7 @@
 //= require bootstrap-notify
 //= require datepicker/bootstrap-datepicker.min
 //= require datepicker/bootstrap-datepicker.pt-BR.min
+//= require bootstrap-multiselect
 //= require sweetalert2.min
 //= require select2/select2.min
 //= require select2/pt-BR
@@ -31,9 +32,9 @@ function erroInesperado() {
     swal('Oops... Ocorreu um erro inesperado!', 'Por favor, contate o suporte!', 'error')
 }
 
-
 $(function () {
     baseUrl = $('#baseUrl').val();
+    $('.multiselect').multiselect();
     $('.select2').select2({ language: 'pt-BR' });
     $('.datepicker').datepicker({
         format: 'dd/mm/yyyy',

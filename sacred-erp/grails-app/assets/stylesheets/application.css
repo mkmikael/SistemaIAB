@@ -16,6 +16,7 @@
 *= require errors.min
 *= require select2.min
 *= require bootstrap-datepicker3.min
+*= require bootstrap-multiselect.min
 *= require_tree fonts
 *= require_self
 */

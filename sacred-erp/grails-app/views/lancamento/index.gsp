@@ -61,28 +61,8 @@
                 <g:render template="list" model="[lancamentoList: despesaList, lancamentoCount: despesaCount]" />
             </div>
             <div role="tabpanel" class="tab-pane" id="resumo">
-                <table class="table">
-                    <tr>
-                        <th>Receita Total</th>
-                        <td><g:formatNumber type="currency" number="${receitaSum}"/></td>
-                    </tr>
-                    <tr>
-                        <th>Despesa Total</th>
-                        <td><g:formatNumber type="currency" number="${despesaSum}"/></td>
-                    </tr>
-                    <tr>
-                        <th>Subtotal</th>
-                        <td><g:formatNumber type="currency" number="${receitaSum + despesaSum}"/></td>
-                    </tr>
-                    <tr>
-                        <th>Saldo Anterior</th>
-                        <td><g:formatNumber type="currency" number="${saldoAnterior}"/></td>
-                    </tr>
-                    <tr>
-                        <th>Saldo em Caixa</th>
-                        <td><g:formatNumber type="currency" number="${receitaSum + despesaSum + saldoAnterior}"/></td>
-                    </tr>
-                </table>
+                <g:render template="resumoMensal"
+                          model="[receitaSum: receitaSum, despesaSum: despesaSum, saldoAnterior: saldoAnterior]" />
             </div>
         </div>
 

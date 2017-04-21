@@ -75,35 +75,21 @@ where
         meses << [index: 12 , name: 'Dezembro']
         params.max = Math.min(max ?: 10, 100)
         def cal = Calendar.instance
-        if (!params.mes) {
-            params.mes = cal.get(Calendar.MONTH) + 1
+        if (!params.ano) {
             params.ano = cal.get(Calendar.YEAR)
         }
-        def saldoAnterior = Lancamento.createCriteria().get {
-            projections {
-                sum('valor')
-            }
-            'in'('tipo', TipoLancamento.RECEBER, TipoLancamento.PAGAR)
-            sqlRestriction "extract(month from data_prevista) < ? and extract(year from data_prevista) <= ?", [params.mes, params.ano]
-        } ?: 0
-
-        def receitasCriteria = {
-            eq('tipo', TipoLancamento.RECEBER)
-            sqlRestriction "extract(month from data_prevista) = ?", [params.mes]
+        if (!params.mes) {
+            params.mes = cal.get(Calendar.MONTH) + 1
         }
-        def receitaList = Lancamento.createCriteria().list(params, receitasCriteria)
-        def receitaCount = Lancamento.createCriteria().count(receitasCriteria)
+        def saldoAnterior = Lancamento.getSaldoAnterior(params.int('mes'), params.int('ano'))
+
+        def receitaList = Lancamento.listReceitas(params)
         def receitaSum = receitaList.sum { it.valor } ?: 0
 
-        def despesasCriteria = {
-            eq('tipo', TipoLancamento.PAGAR)
-            sqlRestriction "extract(month from data_prevista) = ?", [params.mes]
-        }
-        def despesaList = Lancamento.createCriteria().list(params, despesasCriteria)
-        def despesaCount = Lancamento.createCriteria().count(despesasCriteria)
+        def despesaList = Lancamento.listDespesas(params)
         def despesaSum = despesaList.sum { it.valor } ?: 0
-        [receitaList: receitaList, receitaCount: receitaCount, despesaSum: despesaSum,
-         despesaList: despesaList, despesaCount: despesaCount, receitaSum: receitaSum,
+        [receitaList: receitaList, receitaSum: receitaSum,
+         despesaList: despesaList, despesaSum: despesaSum,
          saldoAnterior: saldoAnterior, meses: meses] + params
     }
 
